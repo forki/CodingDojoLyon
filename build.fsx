@@ -36,12 +36,12 @@ let fsiEvaluator =
     evaluator
 
 let copyStylesheet() =
-    let source = outDir @@ "css\custom.css"
-    let target = slidesDir @@ "custom.css"
+    let target = outDir @@ "css\custom.css"
+    let source = slidesDir @@ "custom.css"
     match fileExists source with
     | true -> 
         try
-            CopyFile source (slidesDir @@ "custom.css")
+            CopyFile target source
         with
         | exn -> traceImportant <| sprintf "Could not copy stylesheet: %s" exn.Message
     | false -> CreateFile target
